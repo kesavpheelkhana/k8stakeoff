@@ -1,0 +1,108 @@
+kind create cluster --name=dev --config C:\Users\TEAMABSYZ-277\Documents\kubernates\devcluster.yaml
+
+kubectl get nodes | pods | deployments | replicaset | services | ingress | taskrun
+
+kubectl delete pod <podname>
+
+kubectl scale --replicas=2 deployments/<Name>
+
+kubectl describe ingress frontend
+
+kubectl describe deployment <deploymentid>
+
+Available Ingress Controllers : https://docs.google.com/spreadsheets/d/191WWNpjJ2za6-nbG4ZoUMXMpUK8KlCIosvQB0f-oq3k/edit#gid=907731238
+
+kubectl port-forward svc/<serviceid> 8080:80
+
+curl -s localhost:8080/info
+
+helm list
+
+helm delete conference
+
+update node
+-------------
+helm update frontend
+helm update agenda-service
+helm update c4p-service
+helm update email-service
+
+Cloud native applications are not static, able to release and deploy new versions of services as they become available  is automated through pipelines
+
+Tekton a kubernates native pipeline
+Dagger, code your pipelines and run everywhere
+GitHub actions
+
+Pipeline definitions can be executed by a component known as pipeline engine, which is in charge of picking up pipeline definitions to  create a new pipeline instance that runs each task
+
+tools can be more low level and very flexible and some more high level and more opiniated designed to solve very concrete scenario 
+
+In context of delivering cloud native applications wehave 2 kind of pipelines
+
+1.service pipeline : building, unit testing, packaging, distributing the software artifacts 
+2.Envirmonment pipelines: take care of deploying, updating all services in a given environment
+
+By separating build process and deployment process we have more control to teams responsible for promoting
+
+service pipelines can be more opiniated
+Trunk based development feature based
+Source Code and configuration management => one service/one repository/one pipeline
+
+A service pipeline transform source code to one or a set of artifacts that can be deployed to any environment
+
+kubectl logs -f <POD Name>
+
+Looking at deployment details we get
+container 
+replicas
+resource allocation
+rediness and liveness probes
+rolling updates strategy
+
+
+GIT Repository -> Clone Source Code -> Build&Test -> PushToRepo(Artifact Repo) -> BuildContainer -> PushToContainerRepo(DockerRegistry) -> VerifyK8sYAMLfilesorHelmPackages->PushToRepo(HelmRepository)
+
+App services are built with resiliency
+Dealing with app state is not trivial  => sticky sessions in webapplications
+Inconsistent data
+understanding how application is working (monitoring, tracing, telemetry) Prometheus and grafana
+Application Security and Identity management
+
+
+Dagger uses container to execute each task(step) in a pipeline
+
+
+The 12 factors are
+
+Codebase - One codebase tracked in revision control, many deploys.
+Dependencies - Explicitly declare and isolate dependencies.
+Configuration - Store configuration in the environment.
+Backing Services - Treat backing services as attached resources.
+Build, release, run - Strictly separate build and run stages.
+Processes - Execute the app as one or more stateless processes.
+Port binding - Export services via port binding.
+Concurrency - Scale out via the process model.
+Disposability - Maximize robustness with fast startup and graceful shutdown.
+Dev/prod parity - Keep development, staging, and production as similar as possible.
+Logs - Treat logs as event streams
+Admin processes - Run admin/management tasks as one-off processes
+
+
+Spring Cloud common patterns
+-----------------------------
+configuration management
+service discovery and registration
+load balancing and circuit breaking
+Routing
+Telemetry
+Service broker
+cloud functions
+Netflix
+cloud providers sdk
+
+Benifits of container orchestration
+Scalabulity
+HighAvailabulity
+ResourceEfficiency
+DeploymentandUpdateAutomation
+
