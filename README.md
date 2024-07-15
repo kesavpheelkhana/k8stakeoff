@@ -130,7 +130,7 @@ Pods are the atomic unit of scheduling on a Kubernetes cluster --- VMware deploy
 
 It's important to understand that a Pod is just an execution environment for one or more containers. So... you still package your application components as containers, but when you deploy them on Kubernetes, you wrap them inside of Pods.
 
-The following snippet is a simple Pod YAML file that deploys a Pod based on the `nigelpoulton/k8sbook:latest` image and exposes it on port `8080`.
+The following snippet is a simple Pod YAML file that deploys a Pod based on the `k8sbook:latest` image and exposes it on port `8080`.
 
 Copy the YAML into a new file called `pod.yml` on your PWK cluster. To do this: Copy the YAML text > `vi pod.yml` > `Ins` > Paste YAML > `Esc` > `:wq` > `Enter`.
 
@@ -146,7 +146,7 @@ metadata:
 spec:
   containers:
   - name: hello-ctr
-    image: nigelpoulton/k8sbook:latest
+    image: k8sbook:latest
     ports:
     - containerPort: 8080
 ```
@@ -192,7 +192,7 @@ IP:                 10.1.0.102
 Containers:
   hello-ctr:
     Container ID:   docker://24b7...
-    Image:          nigelpoulton/k8sbook:latest
+    Image:          k8sbook:latest
     Port:           8080/TCP
     Host Port:      0/TCP
     State:          Running
@@ -334,7 +334,7 @@ spec:
         version: v1
     spec:
       containers:
-      - image: nigelpoulton/k8sbook:latest
+      - image: k8sbook:latest
         name: web-ctr
         ports:
         - containerPort: 8080
@@ -392,7 +392,7 @@ Pod Template:
            zone=prod
   Containers:
    web-ctr:
-    Image:        nigelpoulton/acg-web:0.1
+    Image:        acg-web:0.1
     Port:         8080/TCP
     Host Port:    0/TCP
     Environment:  <none>
@@ -599,11 +599,11 @@ Congratulations, you've successfully exposed your application to the internet us
 
 Kubernetes supports native rolling updates of applications deployed via a Kubernetes Deployment.
 
-So far, we've deployed a web app using a Kubernetes Deployment and we currently have 8 replicas exposed via a cloud load-balancer. The app is based on the `nigelpoulton/k8sbook:latest` image. In this section we'll update the app to use the `nigelpoulton/k8sbook:edge` image.
+So far, we've deployed a web app using a Kubernetes Deployment and we currently have 8 replicas exposed via a cloud load-balancer. The app is based on the `k8sbook:latest` image. In this section we'll update the app to use the `k8sbook:edge` image.
 
 The best way to perform a rolling update is declaratively. This requires you to edit the existing `deply.yml` file and change the image that the app uses. You then `POST` the updated YAML file to Kubernetes and let the Deployment controller take care of performing the update. In the real world, you'll have your YAML files stored in version control systems.
 
-Edit the `deploy.yml` file so that `spec.template.spec.containers.image` is nigelpoulton/k8sbook:**edge**. Do not change any other values in the YAML file.
+Edit the `deploy.yml` file so that `spec.template.spec.containers.image` is k8sbook:**edge**. Do not change any other values in the YAML file.
 
 ```
 apiVersion: apps/v1
@@ -629,7 +629,7 @@ spec:
         version: v1
     spec:
       containers:
-      - image: nigelpoulton/k8sbook:edge   << This line changed
+      - image: k8sbook:edge   << This line changed
         name: web-ctr
         ports:
         - containerPort: 8080
@@ -673,6 +673,8 @@ Refresh the browser page to see the new version of the web site.
 Congratulations, you've successfully update your app.
 
 ## What next
+![image](https://github.com/user-attachments/assets/4d2425f0-5828-4b52-b1fb-9b8a65ea8fd3)
+
 
 Practice practice pratice!
 
