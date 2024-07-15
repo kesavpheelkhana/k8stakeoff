@@ -673,6 +673,8 @@ Refresh the browser page to see the new version of the web site.
 Congratulations, you've successfully update your app.
 
 ## What next
+![image](https://github.com/user-attachments/assets/4d2425f0-5828-4b52-b1fb-9b8a65ea8fd3)
+
 
 Practice practice pratice!
 
